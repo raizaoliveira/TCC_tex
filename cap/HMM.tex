@@ -1,0 +1,120 @@
+\chapter{MODELOS OCULTOS DE MARKOV}
+\thispagestyle{plain}
+\quad Um modelo de Markov pode ser definido como um conjunto finito de estados ligados entre si por transições, formando uma máquina de estados. Estas transições estão ligadas por um processo estocástico .  Há ainda um outro processo estocástico associado a um modelo de Markov, que envolve as observações de saída de cada estado. Se somente as observações de saída forem visíveis a um observador externo ao processo, diz-se então que os estados estão ocultos. %, ou seja, o processo estocástico que envolve as transições de estado não é observavel.( aparentemente por isso que é oculto)
+
+%De forma simplificada, podemos dizer que processos estocásticos são processos aleatórios que dependem do tempo. ; Um processo estocástico é uma família de variáveis aleatórias indexadas por elementos t pertencentes a determinado intervalo temporal.Wipedia acho.).
+
+
+
+Um HMM é caracterizado por:
+
+\begin{itemize}
+
+\item  Um conjunto de estados $ S =  \{S_1, S_2, \ldots, S_{n-1}, S_n\} $, onde $n$ é o número de estados;
+
+\item Função de probabilidade de estado inicial $\pi = \{\pi_i\}$ .
+
+\begin{equation}
+\pi_i = P[q_1 = S_i ]~~\textrm{ }~ 1 \leq i \leq n 
+\end{equation}
+onde $q_1$ é o estado inicial $(t = 1)$.
+
+\item Função de probabilidade de transição A;
+
+\item Função de probabilidade de símbolos de saída B.
+
+\end{itemize}
+
+Considerando exclusivamente processos em que as probabilidades de transição não dependem do tempo e os HMMs são de primeira ordem, o conjunto de probabilidades de transição $A$ é definido por: 
+ \begin{equation}
+A = \{ a_{ij}\} 
+\end{equation}
+
+ \begin{equation}
+ a_{ij} =  P [q_{t-1} = S_i] [q_t = S_j]~~\textrm{ }~ 1 \leq i, j\leq n
+\end{equation}
+
+onde $a_{ij}$ é a probabilidade de ocorrer uma transição do estado $S_i$ para o estado $S_j$.\\
+Os coeficientes $a_{ij}$ devem obedecer às seguintes regras:
+
+\begin{equation}
+a_{ij} \geq 0~~\textrm{ }~ 1 \leq i,j \leq n 
+\end{equation}
+
+\begin{equation}
+\displaystyle \sum_{j=1}^n a_{ij} = 1~\textrm{ }~ 1 \leq i \leq n 
+\end{equation}
+
+A probabilidade de estar no estado $S_j$ no instante de tempo $t$ depende somente do instante de tempo $t_1$.\\
+
+
+\section{HMM e a função densidade de probabilidade}
+
+\quad Um HMM também pode ser classificado de acordo com a função densidade de probabilidade. 
+
+\subsection{Função densidade de probabilidade}
+\quad Uma variável aleatória é uma função cujo valor é um número real determinado por cada elemento em um espaço amostral. Dada uma variável aleatória $X$, dizemos que $f(x)$ é uma função densidade de probabilidade de $X$, se e somente se $f(x)$ atender as seguintes condições:
+
+$$
+\displaystyle f(x) \geq 0  \qquad a < x < b
+$$
+
+
+$$
+\displaystyle \int_a^b f(x)dx = 1 
+$$
+
+\subsection{HMM Discreto}
+\quad O número de possíveis símbolos de saída é finito \cite{fundRecFala}. A probabilidade de emitir o símbolo $V_k$ no estado $S_i$ é dada por $b_i(k)$. As propriedades da função de probabilidade $B$ são:
+
+$$
+\displaystyle b_i (k) \geq 0 \qquad 1 \leq i \leq n  \qquad 1 \leq k \leq K
+$$
+
+$$
+\displaystyle \sum_{k=1}^K b_i (k) = 1 \qquad 1 \leq i \leq n 
+$$
+
+As observações são discretas por natureza ou discretizadas através de uma técnica de quantização vetorial, gerando assim codebooks.
+ 
+
+
+\subsection{HMM Contínuo}
+
+\quad A função densidade de probabilidade é contínua. Geralmente uma função densidade elipticamente simétrica, tal como a função densidade de probabilidade Gaussiana \cite{fundRecFala}. As observações são contínuas e a FDP contínua é  usualmente modelada como uma mistura finita de matrizes gaussianas multidimensionais.
+
+****************
+ DEFINIR AQUI A FDP A SER USADA (PROVAVELMENTE A GAUSSIANA CITADA EM  \cite{fundRecFala})
+
+
+\subsection{HMM Semicontínuo}
+
+\quad O modelo é um caso intermediário entre contínuo e o discreto. O conjunto função densidade probabilidade é o mesmo usado para todos os estados e todos os modelos. A probabilidade de emissão dos simbolos de saída é dada por :
+
+
+$$
+\displaystyle b_j(O_t) =  \sum_{V_k \in \eta (O_t)}^-  c_j (k) f (O_t | V_k)   \qquad 1 \leq j \leq n 
+$$
+ onde:\\
+$O_t$ é o vetor de entrada\\
+$\eta(O_t)$ é o conjunto das funções densidade de probabilidade que apresentam os $M$ maiores valores de $f (O_t | V_k)$, $ 1 \leq M \leq K$\\
+$K$ é o número de funções densidade de probabilidade, ou seja, os símbolos de saída\\
+$V_k$ é o $k$-ésimo símbolo de saída\\
+$ c_j (k)$ é a probabilidade de emissão do símbolo $V_k$ no estado $S_j$\\
+$f (O_t | V_k)$ é o valor da $k$-ésima função densidade de probabilidade.
+
+
+
+\section{Topologia}
+
+\quad Uma maneira de classificar um HMM é de acordo com a estrutura de transição da matriz $A$ da cadeia de markov. Existem vários modelos de HMM, tal como o ergódico totalmente conectado onde qualquer estado pode ser alcançado com um único passo, o modelo de caminhos paralelos e o modelo "left-right", também chamado de modelo Bakis. Para o reconhecimento de fala este último é o mais usado \cite{fundRecFala}.\\ *********COLOCAR AQUI UM MODELO DE BAKIS FAZER A MATRIZ
+
+
+
+
+
+
+
+
+
+
