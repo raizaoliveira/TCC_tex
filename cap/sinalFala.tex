@@ -1,8 +1,11 @@
-\chapter{PRÉ-PROCESSAMENTO}
+\chapter{CAPTURA DE ÁUDIO}
+\label{chap:cap_audio}
 \thispagestyle{plain}
-\quad A captura do sinal de áudio é uma parte fundamental para o desenvolvimento de um sistema reconhecedor de fala. O som se propaga no ambiente por meio de ondas de forma contínua no tempo e no espaço a uma velocidade média de \textit{340 metros/segundo} fazendo  ar vibrar. Esta onda sonora  é capturada por meio de um microfone como uma onda analógia e  é convertida para um sinal digital. A onda capturada é normalizada através de um filtro de passa-baixas. Circuitos que realizam esta conversão de onda são chamados de  ADC (\textit{ analog digital converter}). O tamanho das amostras, expressa em bits, é um dos fatores que determina a precisão com que o som é representado em forma digital. Outro fator importante que afeta a qualidade de som é a taxa de amostragem. O teorema de Nyquist  afirma que a frequência mais elevada que pode ser representado com precisão é, no máximo, metade da taxa de amostragem \cite{nyqui}.
+\quad A captura do sinal de áudio é uma parte fundamental para o desenvolvimento de um sistema reconhecedor de fala. Existem bases de dados disponíveis para testes em que a captura
+do sinal de áudio não é necessária, um vez que estas bases disponibilizam os arquivos de áudio. Um exemplo de base de dados de voz é a Aurora-1, esta base é construída por sinais de fala   limpos e degradados através de oito tipos de ruídos \cite{aurora}. Neste trabalho optamos por realizar a captura do áudio pois este também faz parte do objetivo.\\ 
+O som se propaga no ambiente por meio de ondas de forma contínua no tempo e no espaço a uma velocidade média de \textit{340 metros/segundo} fazendo o ar vibrar. Esta onda sonora  é capturada por meio de um microfone como uma onda analógia e  é convertida para um sinal digital. A onda capturada é normalizada através de um filtro de passa-baixas. Circuitos que realizam esta conversão de onda são chamados de  ADC (\textit{ analog digital converter}). O tamanho das amostras, expressa em bits, é um dos fatores que determina a precisão com que o som é representado em forma digital. Outro fator importante que afeta a qualidade de som é a taxa de amostragem. O teorema de Nyquist  afirma que a frequência mais elevada que pode ser representado com precisão é, no máximo, metade da taxa de amostragem \cite{nyqui}.
 
-\section{Captura de Áudio}
+\section{Bibliotecas para Captura de Áudio}
 \quad Para o processo de reconhecimento de fala de qualquer tipo, primeiro é necessário capturar o sinal de áudio. A fase de captura de áudio é essencial para o bom desempenho do projeto. Existem diversas bibliotecas open-source que oferecem funções que realizam a captura e gravação de áudio, entre elas a Allegro e OpenGL, entretanto a aplicação dessas bibliotecas implica em um maior custo computacional, uma vez que estas trazem milhares de linhas de código junto com outras funções além das necessárias para a implementação deste projeto. Com base nisso, buscou-se uma alternativa que integrasse eficiência e baixo custo computacional para aplicações em áudio. 
  
 \subsection{ALSA}
@@ -58,10 +61,10 @@ Posição & Valor & Descrição\\[0.5ex]
 23 - 24& 2 & Quantidade de canais\\[0.5ex]
 \hline
 &&\\[-2ex]
-25 - 28& 44100 & Taxa de amostragem (sample rate) \\[0.5ex]
+25 - 28& 44100 & Taxa de amostragem \\[0.5ex]
 \hline
 &&\\[-2ex]
-29 - 32& 176400& (sample rate * bitspersample * channels) / 8 \\[0.5ex]
+29 - 32& 176400& (taxa de amostragem * bits por amostra * canais) / 8 \\[0.5ex]
 \hline
 &&\\[-2ex]
 33 - 34&  4 & limites \\[0.5ex]

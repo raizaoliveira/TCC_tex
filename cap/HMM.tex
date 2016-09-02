@@ -25,7 +25,7 @@ onde $q_1$ é o estado inicial $(t = 1)$.
 
 \end{itemize}
 
-Considerando exclusivamente processos em que as probabilidades de transição não dependem do tempo e os HMMs são de primeira ordem, o conjunto de probabilidades de transição $A$ é definido por: 
+Considerando exclusivamente processos em que as probabilidades de transição não dependem do tempo e os HMMs são de primeira ordem, um HMM é considerado de primeira ordem quando a trasição do estado depende apenas da probabilidade do estado anterior mais recente. O conjunto de probabilidades de transição $A$ é definido por: 
  \begin{equation}
 A = \{ a_{ij}\} 
 \end{equation}
@@ -65,7 +65,8 @@ $$
 $$
 
 \subsection{HMM Discreto}
-\quad O número de possíveis símbolos de saída é finito \cite{fundRecFala}. A probabilidade de emitir o símbolo $V_k$ no estado $S_i$ é dada por $b_i(k)$. As propriedades da função de probabilidade $B$ são:
+\quad O número de possíveis símbolos de saída é finito \cite{fundRecFala}.
+ A probabilidade de emitir o símbolo $V_k$ no estado $S_i$ é dada por $b_i(k)$. As propriedades da função de probabilidade $B$ são:
 
 $$
 \displaystyle b_i (k) \geq 0 \qquad 1 \leq i \leq n  \qquad 1 \leq k \leq K
@@ -81,10 +82,11 @@ As observações são discretas por natureza ou discretizadas através de uma t�
 
 \subsection{HMM Contínuo}
 
-\quad A função densidade de probabilidade é contínua. Geralmente uma função densidade elipticamente simétrica, tal como a função densidade de probabilidade Gaussiana \cite{fundRecFala}. As observações são contínuas e a FDP contínua é  usualmente modelada como uma mistura finita de matrizes gaussianas multidimensionais.
+\quad A função densidade de probabilidade é contínua. Geralmente uma função densidade elipticamente simétrica, tal como a função densidade de probabilidade Gaussiana \cite{fundRecFala}.
+ As observações são contínuas e a FDP contínua é  usualmente modelada como uma mistura finita de matrizes gaussianas multidimensionais.
 
 ****************
- DEFINIR AQUI A FDP A SER USADA (PROVAVELMENTE A GAUSSIANA CITADA EM  \cite{fundRecFala})
+% DEFINIR AQUI A FDP A SER USADA (PROVAVELMENTE A GAUSSIANA CITADA EM  \cite{fundRecFala})
 
 
 \subsection{HMM Semicontínuo}
@@ -107,9 +109,141 @@ $f (O_t | V_k)$ é o valor da $k$-ésima função densidade de probabilidade.
 
 \section{Topologia}
 
-\quad Uma maneira de classificar um HMM é de acordo com a estrutura de transição da matriz $A$ da cadeia de markov. Existem vários modelos de HMM, tal como o ergódico totalmente conectado onde qualquer estado pode ser alcançado com um único passo, o modelo de caminhos paralelos e o modelo "left-right", também chamado de modelo Bakis. Para o reconhecimento de fala este último é o mais usado \cite{fundRecFala}.\\ *********COLOCAR AQUI UM MODELO DE BAKIS FAZER A MATRIZ
+\quad Uma maneira de classificar um HMM é de acordo com a estrutura de transição da matriz $A$ da cadeia de markov. Existem vários modelos de HMM, tal como o ergódico totalmente conectado onde qualquer estado pode ser alcançado com um único passo, o modelo de caminhos paralelos e o modelo "left-right", também chamado de modelo Bakis. Para o reconhecimento de fala este último é o mais usado \cite{fundRecFala}.%\\ *********COLOCAR AQUI UM MODELO DE BAKIS FAZER A MATRIZ
+
+\section{Os problemas a serem resolvidos}
+\quad O HMM possui três problemas básicos a serem solucionados que são:
+\begin{enumerate}
+\item Problema de avaliação: Dada a sequência de observação $O = (o_1, o_2, o_3, ..., o_n)$ e o modelo $\lambda = (A, B, \pi)$, como calcular eficientemente $P(o| \lambda)$.
+\item Problema da busca da melhor sequência de estados.
+\item Problema de treinamento: como ajustar os parâmetros do modelo $\lambda(A, B, \pi)$ para maximizar $P(o|\lambda)$.
+\end{enumerate}
+
+O problema 1, ou seja, o problema da avaliação pode ser solucionado através do procedimento \textit{Forward-Backward}. O segundo problema é solucionado com a aplicação do algoritmo de \textit{Viterbi} e o terceiro e último problema pode ser otimizado aplicando um procedimento iterativo como o método de \textit{Baum-Welch}. Nas seções \ref{secFB}, \ref{secViterbi} e \ref{secBW} faz-se uma explicação sobre os procedimentos para a solução dos problemas 1, 2 e 3 respectivamente.
+
+\subsection{Foward-Backward}
+\label{secFB}
+ texto
+
+\subsection{Viterbi}
+\label{secViterbi}
+O algoritmo de Viterbi é um algoritmo de programação dinâmica usado para encontrar a sequência de estados ocultos ótima. Dado uma sequência de estados ocultos de um HMM, o algoritmo de viterbi calcula a melhor sequência de estados baseados nas probabilidades de transição. Este algoritmo foi proposto em 1967 por Andrew Viterbi para a decodificação de códigos convolucionais em links de comunicação ruidosos.  O algoritmo também possui aplicações  em redes CDMA e GSM, modem dial-up, satélites, síntese de fala, linguística computacional e bioinformática. Em telecomunicação, um código convolucional é um tipo de código corretor de erro em que cada conjunto de $m$ símbolos é transformado em um conjunto de $n$ símbolos.\\
+Algoritmo
+\begin{itemize}
+\item Inicialização:\\
+$
+\delta_1 (i) = \pi_i b_i (O_1), \qquad 1 \leq i \leq N \\
+\quad \Psi_1 (i) = 0
+$
+
+\item Recursão:\\
+$
+\displaystyle \delta_t (j) = \max\limits_{1 \leq i \leq N} \Big[\delta_{t-1}(i) a_{ij} \Big]b_j (O_t), \qquad 2 \leq t \leq T\\
+\displaystyle \Psi_t (j) = arg\max\limits_{1 \leq i \leq N}\Big[\delta_{t-1} (i)a_{ij}\Big], \qquad 1\leq j \leq N
+$
+
+\item Término:\\
+$
+\displaystyle P^* =\max\limits_{1 \leq i \leq N}  \Big[\delta_{T(i)}\Big] \\
+\displaystyle G^*_T = arg\max\limits_{1 \leq i \leq N}  \Big[\delta_{T(i)}\Big]
+$
+
+\end{itemize}
+
+\quad Para ilustrar melhor o algoritmo de Viterbi vejamos um exemplo: um cientista nunca sai de casa e não tem nenhum contato com o mundo exterior, com excessão do seu gato. 
+Todos os dias o gato sai para passear. O cientista observou o estado em que o gato voltava para casa durante quatro dias seguidos. No primeiro dia o gato voltou seco, no segundo e terceiro dia o gato retornou molhado e no quarto dia o gato retornou seco. Com base nessas observações o cientista gostaria de dizer se o dia estava ensolarado, nublado ou chuvoso. Temos então que a sequência de estados observáveis é  $O = \{seco, molhado, molhado, seco\}$. E o vetor de probabilidade inicial é : $\pi = [0,5 \qquad 0,3 \qquad 0,2]$. A matriz de transição $A$ e a matriz de probabilidade de emissão $B$ são:
+$$A=\left[ \begin{array}{lll}
+ 0,5 & 0,3 & 0,2\\
+ 0,2 & 0,3 & 0,5\\
+ 0,1 & 0,2 & 0,7\\
+ \end{array} \right]$$
+
+$$B=\left[ \begin{array}{ll}
+ 0,7 & 0,3 \\
+ 0,5 & 0,5\\
+0,1 & 0,9\\
+ \end{array} \right]$$
+A inicialização do algoritmo:\\
+$\delta_1 (1) = 0,5 * 0,7 = 0,35$ \\
+$\delta_1 (2) = 0,3 * 0,5 = 0,15$ \\
+$\delta_1 (3) = 0,2 * 0,3 = 0,02$ \\
+$\quad \Psi_1 (1) = 0$
+$\quad \Psi_1 (2) = 0$
+$\quad \Psi_1 (3) = 0$\\
+
+\begin{multicols}{2}
+Passo de recursão:\\
+
+Para $t=2$ e $j = 1$:\\
+$\displaystyle \delta_2 (1) = \max\limits_{1 \leq i \leq N} \Big[\delta_{1}(i) a_{i1} \Big]b_1 (O_2)$\\
+$\delta_1(1)_{a_{11}} = 0,35 * 0,5 = 0,175$\\
+$\delta_1(2)_{a_{21}} = 0,15 * 0,2 = 0,03$ \\
+$\delta_1(3)_{a_{31}} = 0,02 * 0,1 = 0,002$\\
 
 
+Substituindo o $\delta$ encontrado temos:\\
+$\delta_2(1) = 0,175 * 0,3 = 0,0525$\\
+$\Psi_2(1) = 0$\\
+
+Para $t=2$ e $j = 2$:\\
+$\displaystyle \delta_2 (2) = \max\limits_{1 \leq i \leq N} \Big[\delta_{1}(i) a_{i2} \Big]b_2 (O_2)$\\
+$\delta_1(1)_{a_{12}} = 0,35 * 0,3 = 0,105$\\
+$\delta_1(2)_{a_{22}} = 0,15 * 0,3 = 0,045$\\ 
+$\delta_1(3)_{a_{32}} = 0,02 * 0,2 = 0,004$\\
+
+ 
+ Substituindo o $\delta$ encontrado temos:\\
+$\delta_2(2) = 0,105 * 0,5 = 0,0525$\\ 
+$\Psi_2(2) = 0$\\
+
+Para $t=2$ e $j = 3$:\\
+$\displaystyle \delta_2 (3) = \max\limits_{1 \leq i \leq N} \Big[\delta_{1}(i) a_{i3} \Big]b_3 (O_2)$\\
+$\delta_1(1)_{a_{13}} = 0,35 * 0,2 = 0,07$\\
+$\delta_1(2)_{a_{23}} = 0,15 * 0,5 = 0,075$\\ 
+$\delta_1(3)_{a_{33}} = 0,02 * 0,7 = 0,014$\\
+ 
+ Substituindo o $\delta$ encontrado temos:\\
+$\delta_2(3) = 0,075 * 0,3 = 0,0525$\\ 
+$\Psi_2(3) = 1$\\
+
+Para $t=3$ e $j = 1$:\\
+$\displaystyle \delta_3 (1) = \max\limits_{1 \leq i \leq N} \Big[\delta_{2}(i) a_{i1} \Big]b_1 (O_3)$\\
+$\delta_2(1)_{a_{13}} = 0,0525 * 0,5 = 0,02625$\\
+$\delta_2(2)_{a_{23}} = 0,0525 * 0,2 = 0,0105$\\ 
+$\delta_2(3)_{a_{33}} = 0,0675 * 0,1 = 0,007875$\\
+
+Substituindo o $\delta$ encontrado temos:\\
+$\delta_3(1) = 0,02625 * 0,3 = 0,007875$\\ 
+ $\Psi_3(1) = 1$\\
+
+Para $t=3$ e $j = 2$:\\
+$\displaystyle \delta_3 (1) = \max\limits_{1 \leq i \leq N} \Big[\delta_{2}(i) a_{i2} \Big]b_2 (O_3)$\\
+$\delta_2(1)_{a_{11}} = 0,0525 * 0,3 = 0,01575$\\
+$\delta_2(2)_{a_{21}} = 0,0525 * 0,3 = 0,01575$\\
+$\delta_2(3)_{a_{31}} = 0,0675 * 0,2 = 0,0135$\\
+ 
+Substituindo o $\delta$ encontrado temos:\\
+ $\delta_3(2) = 0,01575 * 0,5 = 0,007875$\\
+$\Psi_3(2) = 0$\\
+
+Para $t=3$ e $j = 3$:\\
+$\displaystyle \delta_2 (2) = \max\limits_{1 \leq i \leq N} \Big[\delta_{2}(i) a_{i3} \Big]b_3 (O_3)$\\
+$\delta_2(1)_{a_{11}} = 0,0525 * 0,2 = 0,0105$\\
+$\delta_2(2)_{a_{21}} = 0,0525 * 0,5 = 0,02625$\\ 
+$\delta_2(3)_{a_{31}} = 0,0675 * 0,7 = 0,04725$\\ 
+
+ Substituindo o $\delta$ encontrado temos:\\
+$\delta_3(3) = 0,04725 * 0,9 = 0,042525$\\
+$\Psi_3(3) = 2$\\
+
+\end{multicols}
+
+
+
+
+\subsection{Baum-Welch}
+\label{secBW}
+texto
 
 
 
