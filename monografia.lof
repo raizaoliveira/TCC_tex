@@ -1,9 +1,0 @@
-\select@language {brazil}
-\addvspace {10pt}
-\addvspace {10pt}
-\addvspace {10pt}
-\contentsline {figure}{\numberline {1}{\ignorespaces Buffer de aplica\IeC {\c c}\IeC {\~a}o. \textit {fonte:\cite {linux}}\relax }}{8}{figure.caption.5}
-\addvspace {10pt}
-\contentsline {figure}{\numberline {2}{\ignorespaces Etapas para extra\IeC {\c c}\IeC {\~a}o de coeficientes MFCC. \textit {fonte: Autoria pr\IeC {\'o}pria}\relax }}{11}{figure.caption.7}
-\contentsline {figure}{\numberline {3}{\ignorespaces Banco de filtros tri\IeC {\^a}ngulares MFCC. \textit {fonte: \cite {pucpncc}}\relax }}{13}{figure.caption.8}
-\addvspace {10pt}

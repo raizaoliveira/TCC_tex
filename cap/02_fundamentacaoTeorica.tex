@@ -1,6 +1,8 @@
 \chapter{FUNDAMENTAÇÃO TEÓRICA}
 \label{chap:referencial_teorico}
 \thispagestyle{plain}
+Este capítulo traz uma revisão bibliográfica dos sistemas de reconhecimento de fala e processamento de sinais digitais, uma vez que estes são os assuntos que constituem a base deste trabalho.\\
+
 De acordo com \cite{fundRecFala}, os  sistemas de reconhecimento de fala podem ser classificados em três grupos de acordo com a técnica utilizada. Estes grupos são :
 \begin{itemize}
 \item Reconhecedores por inteligência artificial;
@@ -14,9 +16,9 @@ De acordo com \cite{fundRecFala}, os  sistemas de reconhecimento de fala podem s
 
 \subsection{Reconhecedores baseados em inteligência artificial}
 
-Os sistemas de reconhecimento de fala que utilizam a inteligência artificial usa propriedades tanto dos reconhecedores por comparação de padrões quanto dos reconhecedores baseados na análise acústico-fonética. Sistemas com redes neurais são encaixados nesta classe. As redes Multilayer Perceptron usam uma matriz de ponderação que representa as conexões entre os nós da rede, e cada saída esta associada a uma unidade a ser reconhecida \cite{kluwerNeural}.
+Os sistemas de reconhecimento de fala que utilizam a inteligência artificial usam propriedades tanto dos reconhecedores por comparação de padrões quanto dos reconhecedores baseados na análise acústico-fonética. Sistemas com redes neurais são encaixados nesta classe. As redes Multilayer Perceptron usam uma matriz de ponderação que representa as conexões entre os nós da rede, e cada saída está associada a uma unidade a ser reconhecida \cite{kluwerNeural}.
 
-A abordagem de inteligência artificial se baseia no processo humano natural de ouvir, analisar e tomar uma decisão sobre as características acústicas medidas para reconher a fala. Faz parte do processo de reconheciemento de fala pela abordagem de inteligência artificial o processo de segmentação e rotulagem usado na análise acústico-fonética  \cite{fundRecFala}. Esta abordagem aplica o conceito de que o conhecimento é dinâmico  e os modelos devem adaptar-se frequentemente. 
+A abordagem de inteligência artificial  baseia-se no processo humano natural de ouvir, analisar e tomar uma decisão sobre as características acústicas medidas para reconher a fala. Faz parte do processo de reconheciemento de fala pela abordagem de inteligência artificial o processo de segmentação e rotulagem usado na análise acústico-fonética  \cite{fundRecFala}. Esta abordagem aplica o conceito de que o conhecimento é dinâmico  e os modelos devem adaptar-se frequentemente. 
 
 \subsection{Reconhecedores por comparação de padrões}
 
@@ -32,7 +34,7 @@ Dentre as diversas razões para usar a abordagem de comparação de padrões par
 
 \subsection{Reconhecedores baseados na análise acústico-fonética}
 
-Os sistemas baseados na análise acústico-fonética decodificam o sinal de fala  baseados nas características acústicas deste sinal e na relação entre elas \cite{kluwer}. Os sistemas de análise desta classe devem considerar propriedades acústicas invariantes. Entre estas características estão a classificação entre sonoro e não sonoro, segmentção do sinal da fala, detecção das características que descrevem as unidades fonéticas e escolha do padrão que mais corresponde à sequencia de unidades fonéticas.\\
+Os sistemas baseados na análise acústico-fonética decodificam o sinal de fala  baseados nas características acústicas deste sinal e na relação entre elas \cite{kluwer}. Os sistemas de análise desta classe devem considerar propriedades acústicas invariantes. Entre estas características estão a classificação entre sonoro e não sonoro, segmentação do sinal da fala, detecção das características que descrevem as unidades fonéticas e escolha do padrão que mais corresponde à sequencia de unidades fonéticas.\\
 
 Os reconhecedores baseados na análise acústico-fonética trabalham em duas etapas. O primeiro passo na análise acústico fonética é chamado de fase de segmentação e rotulagem \cite{fundRecFala}. Este passo envolve a segmentação do sinal da fala em regiões discretas, no tempo, onde as propriedades acústicas do sinal são representadas por um único fonema, ou estado. Em seguida uma ou mais etiqueta fonética é associada a cada região segmentada de acordo com as propriedades acústicas. O segundo passo para o reconhecimento tenta determinar uma palavra válida a partir da sequência de etiquetas fonéticas obtidas na fase anterior. As palavras são obtidas a partir de um determinado vocabulário, as palavras obtidas fazem sentido sintático e tem significado semântico.
 
@@ -50,12 +52,12 @@ De acordo com \cite{sig} um sinal é qualquer função associada a um fenômeno 
 \end{itemize} 
 \item Duração: os sinais cujo dominio é limitado dizem-se de duração finita, os restantes são de duração infnita.Os sinais de duração finita tambem são chamdos de janela.
 \item Reprodutibilade: um sinal é dito determinístico se repetindo a mesma experiência obtém-se o mesmo resultado, caso isso não seja possível  então trata-se de um sinal aleatório.
-\item Periodicidade: os sinais determinísticos classificam-se ainda em aperiódicos e periódicos. Os sinais aperiódicos nao são repetitivos. Os sinais periódicos são repetitivos e possuem a relação $x(t) = x(t \bar{+} T) \quad \forall \quad t$, onde $T$ é o período. Quando $T < 2 \pi$ a involvente final do sinal periódico $x(t)$ não coincide com a extensão periódica do sinal base $x_b(t)$ ocorre o fenômeno chamado \textit{aliasing}. O fenômeno de aliasing é importante na conversão discreto-contínua e verifica-se no domínio da frequência.
+\item Periodicidade: os sinais determinísticos classificam-se ainda em aperiódicos e periódicos. Os sinais aperiódicos não são repetitivos. Os sinais periódicos são repetitivos e possuem a relação $x(t) = x(t \bar{+} T) \quad \forall \quad t$, onde $T$ é o período. Quando $T < 2 \pi$ a involvente final do sinal periódico $x(t)$ não coincide com a extensão periódica do sinal base $x_b(t)$ ocorre o fenômeno chamado \textit{aliasing}. O fenômeno de aliasing é importante na conversão discreto-contínua e verifica-se no domínio da frequência.
 \item Morfologia: formas simétricas a um eixo ou outro. Os sinais pares são simétricos ao eixo das ordenadas. Os sinais impares são simétricos ao eixo das abscissas.
-\item Carater : outras medidas são consideradas. Um sinal pode ter carater escalar, vetorial. Por exemplo o sinal de saída de uma gregado de sensores é um sinal sensorial.
+\item Carater : outras medidas são consideradas. Um sinal pode ter carater escalar, vetorial. Por exemplo o sinal de saída de um c de sensores é um sinal sensorial.
 \end{enumerate}
 
-A análise frequencial moderna é um conjunto de técnicas matemáticas e ou físicas que permite  obter o conteúdo frequêncial de qualquer sinal , a que se chama de espectro. O processo de obtenção de espectro chama-se análise espectral. O processo numérico usado para determinar o espectro é chamado de estimação espectral. A estimação espectral é feita em sinais de fonte fisica, como a voz, durante um intervalo de tempo finito. Na prática o conteúdo frequêncial de um dado sinal não é uniforme. Assume valores significativos em intervalos chamados bandas. A designação de filtro habitualmente usada em referência aos sistemas lineares, deriva da possibilidade de certos sistemas eliminarem ou atenuarem fortemente certas bandas. A Tabela \ref{tab:banda}
+A análise frequencial moderna é um conjunto de técnicas matemáticas e ou físicas que permite  obter o conteúdo frequêncial de qualquer sinal , a que se chama de \textbf {espectro} . O processo de obtenção de espectro chama-se \textbf {análise espectral}. O processo numérico usado para determinar o espectro é chamado de  \textbf {estimação espectral}. A estimação espectral é feita em sinais de fonte fisíca, como a voz, durante um intervalo de tempo finito. Na prática o conteúdo frequêncial de um dado sinal não é uniforme. Assume valores significativos em intervalos chamados bandas.  A Tabela \ref{tab:banda}
 mostra alguns sinais e suas bandas.
 
 \begin{table}[H]
@@ -98,7 +100,7 @@ Luz visível& 370 THz& 770 THz \\[0.5ex]
 \end{table}
 
 
-
+ A designação de filtro habitualmente usada em referência aos sistemas lineares, deriva da possibilidade de certos sistemas eliminarem ou atenuarem fortemente certas bandas.
 
 
 

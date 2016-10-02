@@ -23,7 +23,7 @@
 %=========================================================================
 % Herança da classe `abntex2' e inclusão de pacotes e arquivos necessários
 %=========================================================================
-\LoadClass[a4paper,12pt,twoside,brazil]{abntex2}
+\LoadClass[a4paper,12pt,oneside,brazil]{abntex2}
 
 %=========================================================================
 % Herança da classe `abntex2' e inclusão de pacotes e arquivos necessários

@@ -1,20 +1,179 @@
-\chapter{Resultados}
+\chapter{RESULTADOS}
 \thispagestyle{plain}
-\quad Os métodos de estudados de filtragem de sinal, codificação de áudio e reconhecimento de fala foram implementados em linguagem computacional C, complilada  com GCC no sistema operacional Linux Ubuntu 12.04 LTS.
+\label{chap:anal}
 
-\section{Estrutura do Código}
+\quad Foram estudados e avaliados três diferentes abordagens para o reconhecimento de palavras, sempre levando em consideração o contexto da aplicação e caso de teste. 
+O trabalho foi dividido em duas etapas na primeira etapa ocupou-se da captura e tratamento do sinal e extração de características. \\
 
-\quad A estrtura das funções implementadas é mostrada na Figura \ref{fig:codigo}. 
+\quad Foram avaliados um método estocástico (HMM), um método determinístico (correlação entre vetores) e um método de inteligência articial (SOM). 
+\begin{table}[H]
+\centering
+\caption{Taxa de acertos do método determinístico}
+\label{tab:comp}
+\smallskip
+\begin{tabular}{|l|l|l|l|}
+\hline
+ Palavra & Ambiente Silencioso & Ambiente Ruidoso & Média\\[0.5ex]
+\hline
+&&&\\[-2ex]
+Ajuda & 70\% &  60\% &  65\%\\[0.5ex]
+\hline
+&&&\\[-2ex]
+Assalto & 80\% &  40\% &  60\% \\[0.5ex]
+\hline
+&&&\\[-2ex]
+Ladrão & 60\% & 34\% & 47\%\\[0.5ex]
+\hline
+&&&\\[-2ex]
+Polícia & 90\% & 60\% & 75\%\\[0.5ex]
+\hline
+&&&\\[-2ex]
+Socorro & 90\% & 80\% & 85\%\\[0.5ex]
+\hline
+&&&\\[-2ex]
+Média & 78\% & 54,8\% & 66,4\%\\[0.5ex]
+\hline
+\end{tabular}
+\end{table}
 
-\subsection{Captura e filtragem do sinal}
+A tabela \ref{tab:comp} mostra a porcentagem de acerto para cada palavra usando o método determinístico. Cada palavra foi inserida dez vezes por um número aleatório de pessoas  em um ambiente com pouco ruído a média da taxa de acertos foi de 78\% e em um ambiente com muito ruído esta taxa caiu para 66,4\%.
 
-\quad A API utilizada para a captura de áudio foi a ALSA por meio de funções. Uma estrutura de programa básico usando esta API esta sempre na forma:
+\begin{table}[H]
+\centering
+\caption{Taxa de acertos do método determinístico}
+\label{tab:comp2}
+\smallskip
+\begin{tabular}{|l|l|l|l|}
+\hline
+ Palavra & Isolado & Contínuo & Média\\[0.5ex]
+\hline
+&&&\\[-2ex]
+Ajuda & 60\% &  35\% &  47,5\%\\[0.5ex]
+\hline
+&&&\\[-2ex]
+Assalto & 40\% &  35\% &  37,5\% \\[0.5ex]
+\hline
+&&&\\[-2ex]
+Ladrão & 30\% & 34\% & 32\%\\[0.5ex]
+\hline
+&&&\\[-2ex]
+Polícia & 60\% & 37\% & 48,5\%\\[0.5ex]
+\hline
+&&&\\[-2ex]
+Socorro & 80\% & 40\% & 60\%\\[0.5ex]
+\hline
+&&&\\[-2ex]
+Média & 59\% & 36,6\% & 45,1\%\\[0.5ex]
+\hline
+\end{tabular}
+\end{table}
 
-\begin{verbatim}
-Abre uma interface para captura ou reprodução
-setar os parâmetros de hardware
-	Enquanto houver dados a serem processados:
-		ler dados PCM
-		ou escrever dados PCM
-Fecha a interface
-\end{verbatim}
+
+A tabela \ref{tab:comp2} mostra a porcentagem de acerto para cada palavra usando o método determinístico com abordagem contínua. Cada palavra foi inserida vinte vezes por um número aleatório de pessoas  em um ambiente ruidoso. A média da taxa de acertos foi de 45,1\% .
+
+\begin{table}[H]
+\centering
+\caption{Taxa de acertos do algoritmo de Kohonen}
+\label{tab:comp3}
+\smallskip
+\begin{tabular}{|l|l|l|l|}
+\hline
+ Palavra & Ambiente Silencioso & Ambiente Ruidoso & Média\\[0.5ex]
+\hline
+&&&\\[-2ex]
+Ajuda & 70\% &  65 \% &  67,5\% \\[0.5ex]
+\hline
+&&&\\[-2ex]
+Assalto & 80\% &  55 \% &  67,5\% \\[0.5ex]
+\hline
+&&&\\[-2ex]
+Ladrão & 75\% &  65 \%&  70\% \\[0.5ex]
+\hline
+&&&\\[-2ex]
+Polícia & 75 \% & 65\% & 70\% \\[0.5ex]
+\hline
+&&&\\[-2ex]
+Socorro & 80\% & 70\% & 75\% \\[0.5ex]
+\hline
+&&&\\[-2ex]
+Média & 76\% & 64\% & 70\%\\[0.5ex]
+\hline
+\end{tabular}
+\end{table}
+
+A tabela \ref{tab:comp3} mostra  a porcentagem de acerto para cada palavra usando o algoritmo SOM. Cada palavra foi inserida dez vezes por um número aleatório de pessoas  em um ambiente com pouco ruído a média da taxa de acertos foi de 76\% e em um ambiente com muito ruído esta taxa caiu para 64\%.
+
+\begin{table}[H]
+\centering
+\caption{Comparação entre os métodos}
+\label{tab:comp5}
+\smallskip
+\begin{tabular}{|l|l|l|l|}
+\hline
+ -- & Determinístico & HMM & SOM\\[0.5ex]
+\hline
+&&&\\[-2ex]
+Taxa de acerto & 66,4\% &  -- &  70\%\\[0.5ex]
+\hline
+&&&\\[-2ex]
+Tempo de execução & rápido &  viciada &  médio \\[0.5ex]
+\hline
+&&&\\[-2ex]
+Custo computacional & baixo & alto & alto\\[0.5ex]
+\hline
+\end{tabular}
+\end{table}
+
+A tabela \ref{tab:comp5} traz uma comparação entre os métodos estudados. O algorimto HMM, como foi explicado no capítulo \ref{chap:hmm}, é baseado em probabilidade e nas transições de um estado a outro. Para garantir a homogeneidade do sistema
+os valores de transição dos estados são iguais isso gera um vício. Sempre que uma palavra é identificada não ocorre transição de estados, retornando sempre o estado anterior.
+
+Para o caso estudado neste trabalho podemos concluir que o  método determinístico foi o que se mostrou mais eficiente, pois este consome menos recursos computacionais e possui uma taxa de acerto satisfatória.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+

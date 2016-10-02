@@ -20,6 +20,7 @@
 \usepackage{algpseudocode,algorithm}
 \usepackage{multicol}
 \usepackage{amsfonts}
+\usepackage{mathrsfs}
 %\usepackage{vaucanson-g}
 %\usepackage[table]{xcolor}
 
@@ -73,15 +74,15 @@
 \pagenumbering{roman}
 % Insere Capa, Folha de rosto e folha de aprovação (se inserida).
 \include{preTextual/capa}
-%\include{preTextual/contracapa}
-%\include{preTextual/page3}
-%\include{preTextual/banca}
-%\include{preTextual/dedicatoria}
-%\include{preTextual/agradecimentos}
+\include{preTextual/contracapa}
+\include{preTextual/page3}
+\include{preTextual/banca}
+\include{preTextual/dedicatoria}
+\include{preTextual/congrats}
 % ---
 %\maketitle
 
-\include{resumo}
+\include{cap/00_resumo_abstract}
 \sumario
 \listasiglas{abrev/Abreviaturas}
 \listatabelas
@@ -101,7 +102,10 @@
 \include{cap/sinalFala}
 \include{cap/mfcc}
 \include{cap/HMM}
-%\include{cap/resultados}
+\include{cap/RedesNeurais}
+%\include{cap/implementacao}
+\include{cap/resultados}
+\include{cap/conclusao}
 
 
 %capitulo intitulado conclusao e obrigatorio

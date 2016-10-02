@@ -4,12 +4,12 @@
 
 
 \quad Nos primeiros sistemas computacionais a comunicação entre pessoas e máquinas era realizada através de terminais por linha de comando.  Apenas especialistas conseguiam utilizar estes sistemas.
-Depois, no início da década de 70, com a criação do mouse e a introdução da interface gráfica  os sistemas tornaram-se mais amigáveis ao usuário, podendo ser utilizados por pessoas comuns sem necessidade de conhecimento técnico. Com o passar dos anos a interação entre pessoas e máquinas tornou-se mais intuitiva com as diversas interfaces entre o usuário e o sistema. No fim da década de 70 iniciaram-se as pesquisas de reconhecimento de fala.
+Depois, no início da década de 70, com a criação do mouse e a introdução da interface gráfica  os sistemas tornaram-se mais amigáveis ao usuário, podendo ser utilizados por pessoas comuns sem necessidade de conhecimento técnico. Com o passar dos anos a interação entre pessoas e máquinas tornou-se mais intuitiva com às diversas interfaces entre o usuário e o sistema. No fim da década de 70 iniciaram-se as pesquisas de reconhecimento de fala.
 Interfaces por meio de fala são utilizadas em diversas áreas, tais como: sistemas embarcados, automação residencial, operações bancárias, conversão fala texto e dispositivos móveis.
 
 \quad O reconhecimento da fala é um campo de estudo amplo e necessário as diversas tecnologias que utilizam
 desta como um  meio de comunicação entre o usuário e o sistema. Utilizar a fala como entrada de um sistema
-torna a comunicação entre o usuário e o sitema mais direta, intuitiva, rápida e precisa.Como um campo de ampla aplicacação, o reconhecimento de fala tem diversos projetos em diferentes partes do mundo. Dentre os quais se destaca o projeto CMU Sphinx da universidade americana Carnegie Mellon. O projeto já tem cerca de 20 anos de pesquisas na área de reconhecimento de fala e de voz. Trata-se de um projeto open source voltado para linux, mas também conta com uma versão em java multiplataforma. O CMU Sphinx oferece suporte para várias linguagens, dentre elas o inglês, alemão, russo, francês e espanhol. 
+torna a comunicação entre o usuário e o sistema mais direta, intuitiva, rápida e precisa. Como um campo de ampla aplicacação, o reconhecimento de fala tem diversos projetos em diferentes partes do mundo. Dentre os quais se destaca o projeto CMU Sphinx da universidade americana Carnegie Mellon. O projeto já tem cerca de 20 anos de pesquisas na área de reconhecimento de fala e de voz. Trata-se de um projeto open source voltado para linux, mas também conta com uma versão em java multiplataforma. O CMU Sphinx oferece suporte para várias linguagens, dentre elas o inglês, alemão, russo, francês e espanhol. 
 O reconhecimento de fala pode ser classificado de acordo com o tamanho do vocábulario, de acordo com os algoritmos utilizados e de acordo com o tipo de fala a ser reconhecida (contínua ou discreta).
 
 
@@ -36,7 +36,7 @@ O reconhecimento de palavaras ditas é um campo de estudo de extrema importânci
 \section{Objetivos}
 \label{sec:objetivos}
 
-O objetivo deste trabalho é estudar os principais métodos de reconhecimento de fala. Analisar os algoritmos utilizados, suas vantagens e desvantagens. Apresentar os resultados para um pequeno vocábulario.
+O objetivo deste trabalho é estudar métodos de reconhecimento de palavras isoladas em fluxo contínuo independente do locutor. Analisar os algoritmos utilizados, suas vantagens e desvantagens. Apresentar os resultados para um pequeno vocábulario.
 %A definição dos objetivos determina o que se quer atingir com a realização do
 %trabalho de pesquisa. Objetivo é sinônimo de meta, fim.
 %Uma sugestão interessante, na redação dos objetivos, é utilizar, no início das
@@ -46,7 +46,7 @@ O objetivo deste trabalho é estudar os principais métodos de reconhecimento de
 %não há regra a ser cumprida quanto a isso. Caso se opte em separá-los, tem-se:
 \subsection{Objetivo geral}
 \label{subsec:objetivogeral}
-Estudar e analisar os algoritmos existentes para o reconhecimento de palavras  ditas em um vocábulario pequeno e um ambiente não controlado.
+Estudar e analisar os algoritmos existentes para o reconhecimento de palavras  ditas em um vocábulario pequeno.
 %O objetivo geral vincula-se à própria significação geral do tema proposto pelo
 %projeto, ou seja, significa traçar as principais metas que norteiam a pesquisa.
 \subsection{Objetivo específico}
@@ -54,7 +54,7 @@ Estudar e analisar os algoritmos existentes para o reconhecimento de palavras  d
 %Descrever aqui o(s) propósito(s) específico(s) para atingir um ponto de vista do tema,
 %um ângulo a ser pesquisado, permitindo atingir o objetivo geral. Aconselha-se, na redação
 %desta seção, não ser prolixo.
-Apontar a melhor solução para reconhecimento de palavras ditas em ambientes não controlados.
+Apontar a melhor solução para reconhecimento de palavras ditas independente de locutor em fluxo contínuo com baixa custo computacional.
 
 
 \section{Metodologia}
@@ -71,7 +71,8 @@ Apontar a melhor solução para reconhecimento de palavras ditas em ambientes n�
 
 \end{itemize}
 
-\quad No capítulo \ref{chap:referencial_teorico} é feita uma explicação do que é relevante para este trabalho com base na literatura.
+\section{Organização do Trabalho}
+\quad No capítulo \ref{chap:referencial_teorico} é feita uma explicação do que é relevante para este trabalho com base na literatura. No capítulo \ref{chap:cap_audio}  é feita uma explicação de como é realizada a captação de áudio. No capítulo \ref{chap:pre_proc} a transformação do áudio em coeficientes mel-cepstrais. No capítulo \ref{chap:hmm} é realizada a explicação sobre o \textbf{HMM} (Hidden Markov Model). No capítulo \ref{chap:ann} é feita uma breve introdução sobre  redes neurais. No capítulo \ref{chap:anal} são expostos os resultados obtidos. O capítulo \ref{chap:conc} traz as considerações finais sobre o trabalho desenvolvido e sugestão para futuros trabalhos.
 
 
 
